@@ -1,0 +1,1102 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    background: #000;
+}
+
+header .menu_side,
+header .song_side {
+    position: relative;
+    height: 90%;
+    color: #fff;
+}
+
+header .menu_side {
+    width: 25%;
+    background: #050505;
+    box-shadow: 5px 0 2px #000;
+}
+
+header .song_side {
+    width: 75%;
+    background: #000;
+    z-index: 2;
+    overflow-y: auto; /* Включаем вертикальный скролл */
+    padding-bottom: 20px; /* Отступ снизу */
+}
+
+/* Скрываем стандартный скроллбар для красоты */
+header .song_side::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent;
+}
+
+header .song_side::before {
+    content: '';
+    position: fixed; /* Фон теперь зафиксирован и не уезжает вверх */
+    top: 0;
+    right: 0;
+    width: 75%; /* Фон занимает только правую часть */
+    height: 420px;
+    background:
+        linear-gradient(
+            90deg,
+            #000 0%,
+            rgba(0, 0, 0, 0.9) 28%,
+            rgba(0, 0, 0, 0.45) 65%,
+            rgba(0, 0, 0, 0.08) 100%
+        ),
+        url('png20.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    z-index: -1;
+}
+
+header .menu_side h1 {
+    font-size: 22px;
+    margin: 22px 0 0 25px;
+    font-weight: 600;
+}
+
+header .menu_side .playlist {
+    margin: 45px 0 0 25px;
+}
+
+header .menu_side .playlist h4 {
+    font-size: 14px;
+    font-weight: 500;
+    padding-bottom: 15px;
+    color: #4c5262;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: .3s linear;
+}
+
+header .menu_side .playlist h4:hover {
+    color: #fff;
+}
+
+header .menu_side .playlist h4 span {
+    position: relative;
+    margin-right: 35px;
+}
+
+header .menu_side .playlist h4 span::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border: 2px solid #4c5262;
+    border-radius: 50%;
+    top: -4px;
+}
+
+header .menu_side .playlist h4 .bi {
+    display: none;
+}
+
+header .menu_side .playlist .active {
+    color: #1DB954;
+}
+
+header .menu_side .playlist .active span {
+    display: none;
+}
+
+header .menu_side .playlist .active .bi {
+    display: flex;
+    margin-right: 20px;
+}
+
+.menu_song {
+    width: 100%;
+    height: 430px;
+    margin-top: 45px;
+    overflow-y: auto;
+}
+
+.menu_song::-webkit-scrollbar {
+    display: none;
+}
+
+.menu_song li {
+    position: relative;
+    list-style-type: none;
+    padding: 7px 45px 7px 25px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: .3s linear;
+}
+
+.menu_song li:hover {
+    background: rgba(105, 105, 170, .12);
+}
+
+.menu_song li span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4c5262;
+    width: 25px;
+}
+
+.menu_song li img {
+    width: 38px;
+    height: 38px;
+    object-fit: cover;
+    margin-left: 15px;
+    border-radius: 3px;
+}
+
+.menu_song li h5 {
+    font-size: 12px;
+    margin-left: 14px;
+    line-height: 16px;
+    width: 145px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.menu_song li h5 .subtitle {
+    font-size: 10px;
+    color: #4c5262;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.menu_song li .bi {
+    position: absolute;
+    right: 20px;
+    font-size: 19px;
+    color: #fff;
+}
+
+.song_side nav {
+    width: 90%;
+    height: 10%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.song_side nav ul {
+    display: flex;
+}
+
+.song_side nav ul li {
+    position: relative;
+    list-style-type: none;
+    font-size: 14px;
+    color: #4c5262;
+    margin-right: 35px;
+    cursor: pointer;
+    transition: .3s linear;
+    font-weight: 500;
+}
+
+.song_side nav ul li:hover,
+.song_side nav ul li:nth-child(1) {
+    color: #fff;
+}
+
+.song_side nav ul li span {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #1DB954;
+    bottom: -7px;
+    left: 0;
+    border-radius: 20px;
+}
+
+.song_side nav .search {
+    position: relative;
+    width: 42%;
+    padding: 5px 12px;
+    border-radius: 25px;
+    color: gray;
+    background: rgba(184, 184, 184, .12);
+    backdrop-filter: blur(5px);
+}
+
+.song_side nav .search input {
+    background: none;
+    outline: none;
+    border: none;
+    padding: 0 10px;
+    color: #fff;
+    font-size: 13px;
+    width: 85%;
+}
+
+.song_side nav .user {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.song_side nav .user img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.song_side .content {
+    width: 90%;
+    height: 32%;
+    margin: auto;
+    padding-top: 35px;
+}
+
+.song_side .content h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.song_side .content p {
+    font-size: 13px;
+    color: #4c5262;
+    margin: 10px 0;
+}
+
+.song_side .content .buttons {
+    margin-top: 25px;
+}
+
+.song_side .content .buttons button {
+    width: 145px;
+    height: 35px;
+    border: 2px solid #1DB954;
+    border-radius: 25px;
+    background: #1DB954;
+    color: #fff;
+    cursor: pointer;
+    transition: .3s linear;
+    font-weight: 600;
+}
+
+.song_side .content .buttons button:hover {
+    background: none;
+    color: #1DB954;
+}
+
+.song_side .content .buttons button:nth-child(2) {
+    background: none;
+    color: #1DB954;
+    margin-left: 8px;
+}
+
+.song_side .content .buttons button:nth-child(2):hover {
+    background: #1DB954;
+    color: #fff;
+}
+
+.popular_song {
+    width: 90%;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.popular_song .h4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.popular_song .h4 h4 {
+    font-size: 20px;
+}
+
+.popular_song .h4 .bi {
+    color: #a4a8b4;
+    cursor: pointer;
+    transition: .3s linear;
+    font-size: 22px;
+}
+
+.popular_song .h4 .bi:hover {
+    color: #fff;
+}
+
+.pop_song {
+    width: 100%;
+    height: 190px;
+    margin-top: 20px;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.pop_song::-webkit-scrollbar {
+    display: none;
+}
+
+.pop_song li {
+    min-width: 125px;
+    height: 180px;
+    list-style-type: none;
+    margin-right: 18px;
+    transition: .3s linear;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.pop_song li:hover {
+    background: rgba(105, 105, 170, .12);
+}
+
+.pop_song li .img_play {
+    position: relative;
+    width: 115px;
+    height: 115px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pop_song li .img_play img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.pop_song li .img_play .bi {
+    position: absolute;
+    font-size: 27px;
+    cursor: pointer;
+    opacity: 0;
+    transition: .3s linear;
+    color: #fff;
+}
+
+.pop_song li .img_play:hover .bi {
+    opacity: 1;
+}
+
+.pop_song li h5 {
+    padding-top: 8px;
+    line-height: 16px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.pop_song li h5 .subtitle {
+    font-size: 10px;
+    color: #4c5262;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.master_play {
+    width: 100%;
+    height: 10%;
+    background: #050505;
+    box-shadow: 0 -3px 8px #000;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.master_play .wave {
+    width: 35px;
+    height: 35px;
+    padding-bottom: 6px;
+    display: flex;
+    align-items: flex-end;
+    margin-right: 12px;
+}
+
+.master_play .wave .wave1 {
+    width: 4px;
+    height: 10px;
+    margin-right: 4px;
+    border-radius: 10px 10px 0 0;
+    background: #1DB954;
+    animation: unset;
+}
+
+.master_play .wave .wave1:nth-child(2) {
+    height: 14px;
+}
+
+.master_play .wave .wave1:nth-child(3) {
+    height: 8px;
+}
+
+.master_play .active2 .wave1 {
+    animation: wave .5s linear infinite;
+}
+
+.master_play .active2 .wave1:nth-child(2) {
+    animation-delay: .4s;
+}
+
+.master_play .active2 .wave1:nth-child(3) {
+    animation-delay: .8s;
+}
+
+@keyframes wave {
+    0% {
+        height: 10px;
+    }
+
+    50% {
+        height: 18px;
+    }
+
+    100% {
+        height: 10px;
+    }
+}
+
+.master_play img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+.master_play h5 {
+    width: 170px;
+    font-size: 13px;
+    margin-left: 15px;
+    color: #fff;
+    line-height: 17px;
+    overflow: hidden;
+}
+
+.master_play h5 .subtitle {
+    font-size: 11px;
+    color: #4c5262;
+}
+
+.master_play .icon {
+    font-size: 23px;
+    color: #fff;
+    margin: 0 25px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.master_play .icon .bi {
+    cursor: pointer;
+}
+
+.master_play .icon #masterPlay {
+    border: 1px solid rgba(105, 105, 170, .25);
+    border-radius: 50%;
+    padding: 4px 7px;
+}
+
+.master_play span {
+    color: #fff;
+    width: 42px;
+    font-size: 12px;
+}
+
+.master_play .bar {
+    position: relative;
+    width: 43%;
+    height: 3px;
+    background: rgba(105, 105, 170, .25);
+    margin: 0 15px;
+}
+
+.master_play .bar .bar2 {
+    position: absolute;
+    background: #1DB954;
+    width: 0%;
+    height: 100%;
+    top: 0;
+}
+
+.master_play .bar .dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #1DB954;
+    border-radius: 50%;
+    left: 0%;
+    top: -2.5px;
+}
+
+.master_play .bar input {
+    position: absolute;
+    width: 100%;
+    top: -7px;
+    left: 0;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+}
+
+.master_play .vol {
+    position: relative;
+    width: 120px;
+    height: 3px;
+    margin-left: 45px;
+    background: rgba(105, 105, 170, .25);
+}
+
+.master_play .vol .bi {
+    position: absolute;
+    color: #fff;
+    font-size: 25px;
+    top: -15px;
+    left: -33px;
+}
+
+.master_play .vol input {
+    position: absolute;
+    width: 100%;
+    top: -8px;
+    left: 0;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+}
+
+.master_play .vol .vol_bar {
+    position: absolute;
+    background: #1DB954;
+    width: 30%;
+    height: 100%;
+    top: 0;
+}
+
+.master_play .vol .dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #1DB954;
+    border-radius: 50%;
+    left: 30%;
+    top: -2.5px;
+}
+/* ===== АНИМИРОВАННЫЙ ПАУЧОК ===== */
+
+.spider-box {
+    position: absolute;
+    top: 0;
+    right: 90px;
+    width: 170px;
+    height: 260px;
+    z-index: 20;
+    pointer-events: none;
+    animation: spiderMove 5s ease-in-out infinite;
+}
+
+.web-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 95px;
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.35);
+}
+
+.spider {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    width: 150px;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.55));
+}
+
+@keyframes spiderMove {
+    0% {
+        transform: translateY(-15px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(35px) rotate(3deg);
+    }
+
+    100% {
+        transform: translateY(-15px) rotate(0deg);
+    }
+}
+   #searchResult {
+    position: absolute;
+    top: 70px;
+    right: 210px;
+    color: #fff;
+    font-size: 13px;
+    background: rgba(0, 0, 0, 0.65);
+    padding: 8px 14px;
+    border-radius: 20px;
+    z-index: 30;
+    display: none;
+}
+
+#searchResult.error {
+    color: #ff6b6b;
+}
+
+#searchResult.success {
+    color: #1DB954;
+}
+/* ===== КНОПКА FOLLOW ===== */
+
+#followBtn.followed {
+    background: #1DB954;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(29, 185, 84, 0.6);
+}
+
+#followMessage {
+    margin-top: 12px;
+    color: #1DB954;
+    font-size: 13px;
+    font-weight: 500;
+    display: none;
+}
+/* ===== КРАСИВОЕ ОКНО АВТОРИЗАЦИИ ===== */
+.auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75); /* Полупрозрачный темный фон */
+    backdrop-filter: blur(8px); /* Размытие заднего фона */
+    z-index: 9999; /* Поверх всего */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.auth-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.auth-box {
+    background: rgba(20, 20, 20, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    width: 380px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(29, 185, 84, 0.2);
+    border: 1px solid rgba(29, 185, 84, 0.3);
+}
+
+.auth-box h2 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.auth-box p {
+    color: #a4a8b4;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.auth-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+
+.auth-box input:focus {
+    border-color: #1DB954;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.auth-buttons button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+
+#loginBtn {
+    background: #1DB954;
+    color: #fff;
+}
+
+#loginBtn:hover {
+    background: #169c44;
+}
+
+#registerBtn {
+    background: transparent;
+    border: 2px solid #1DB954;
+    color: #1DB954;
+}
+
+#registerBtn:hover {
+    background: #1DB954;
+    color: #fff;
+}
+
+#authMessage {
+    font-size: 13px;
+    margin-bottom: 15px;
+    min-height: 18px;
+}
+/* ===== КРАСИВОЕ ОКНО ПРОФИЛЯ ===== */
+.profile-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(0, 0, 0, 0.8); /* Затемненный фон */
+    backdrop-filter: blur(8px); /* Размытие */
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-modal.hidden {
+    display: none !important; /* Принудительно скрываем */
+}
+
+.profile-content {
+    background: #0a0a0a;
+    width: 450px;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 15px;
+    padding: 35px;
+    border: 1px solid rgba(29, 185, 84, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(29, 185, 84, 0.2);
+    position: relative;
+    color: #fff;
+    text-align: center;
+}
+
+.close-profile {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    color: #a4a8b4;
+    transition: 0.3s;
+}
+.close-profile:hover { color: #ff6b6b; }
+
+.profile-header { margin-bottom: 20px; }
+
+.profile-avatar-container {
+    position: relative;
+    width: 110px; height: 110px;
+    margin: 0 auto 15px;
+}
+.profile-avatar-container img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1DB954;
+    background: #000;
+}
+.avatar-edit-label {
+    position: absolute;
+    bottom: 0; right: 0;
+    background: #1DB954;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: #000;
+    transition: 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+.avatar-edit-label:hover { background: #fff; }
+
+.profile-header h2 { font-size: 24px; margin-bottom: 5px; font-weight: 600; }
+.profile-header p { color: #a4a8b4; font-size: 14px; margin-bottom: 20px; line-height: 1.4; }
+
+.edit-btn, .save-btn {
+    background: transparent;
+    border: 2px solid #1DB954;
+    color: #1DB954;
+    padding: 8px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+}
+.edit-btn:hover, .save-btn:hover { background: #1DB954; color: #fff; }
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 10px;
+}
+.edit-form.hidden { display: none !important; }
+
+.edit-form input, .edit-form textarea {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: 0.3s;
+}
+.edit-form input:focus, .edit-form textarea:focus { border-color: #1DB954; }
+.edit-form textarea { resize: none; height: 80px; }
+#addMusicBtn:hover {
+    background: #169c44 !important;
+    transform: scale(1.1);
+}
+.song_side nav ul li#friendsBtn {
+    margin-right: 25px;
+}
+/* ===== ТУМБЛЕР ПРИВАТНОСТИ ===== */
+.switch { position: relative; display: inline-block; width: 40px; height: 20px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #4c5262; transition: .4s; }
+.slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; }
+input:checked + .slider { background-color: #1DB954; }
+input:checked + .slider:before { transform: translateX(20px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+/* ===== СТИЛИ ДЛЯ ПЛЕЙЛИСТОВ ===== */
+.playlist-card {
+    min-width: 140px; /* Сделали чуть уже */
+    height: 170px;    /* Сделали чуть ниже */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 10px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.playlist-card:hover {
+    background: rgba(29, 185, 84, 0.15);
+}
+
+.playlist-card img {
+    width: 120px;    /* Уменьшили картинку, чтобы она влезала */
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.playlist-card h5 {
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    line-height: 1.2;
+    /* Обрезаем длинный текст, чтобы он не вылезал */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Кнопка "Добавить в библиотеку" при наведении */
+.add-playlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #1DB954;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.playlist-card:hover .add-playlist-btn {
+    opacity: 1;
+}
+header .song_side::-webkit-scrollbar {
+    width: 8px;
+}
+header .song_side::-webkit-scrollbar-thumb {
+    background: #4c5262;
+    border-radius: 10px;
+}
+header .song_side::-webkit-scrollbar-thumb:hover {
+    background: #1DB954;
+}
+/* ===== СТРАНИЦА ПЛЕЙЛИСТА ===== */
+.playlist-view {
+    position: absolute;
+    top: 0;
+    left: 25%; /* Сдвигаем вправо, так как слева меню */
+    width: 75%;
+    height: 90%; /* Высота до плеера */
+    background: #050505;
+    z-index: 100; /* Поверх всего контента */
+    padding: 30px 5%;
+    overflow-y: auto;
+    color: #fff;
+}
+
+.playlist-view.hidden {
+    display: none !important;
+}
+
+/* Красим скроллбар плейлиста */
+.playlist-view::-webkit-scrollbar { width: 8px; }
+.playlist-view::-webkit-scrollbar-thumb { background: #1DB954; border-radius: 10px; }
+
+.playlist-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 25px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+#backFromPlaylist {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 30px;
+    cursor: pointer;
+    color: #a4a8b4;
+    transition: 0.3s;
+}
+
+#backFromPlaylist:hover {
+    color: #fff;
+}
+
+#playlistViewCover {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.playlist-info p {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.playlist-info h1 {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.playlist-info span {
+    color: #a4a8b4;
+    font-size: 14px;
+}
+
+/* Список треков внутри плейлиста */
+.playlist-songs .songItem {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.playlist-songs .songItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-songs .songItem img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.playlist-songs .songItem h5 {
+    font-size: 15px;
+    width: 100%;
+}
+
+.playlist-songs .songItem .subtitle {
+    font-size: 12px;
+    color: #a4a8b4;
+    margin-top: 5px;
+}
+
+.playlist-songs .songItem .bi {
+    font-size: 22px;
+    color: #1DB954;
+    margin-left: auto;
+}
